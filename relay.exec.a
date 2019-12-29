@@ -1,0 +1,58 @@
+/* Rexx */
+ 
+Main:
+  Parse Arg arg1 arg2
+ 
+  uarg1 = Translate(arg1)
+  uarg2 = Translate(arg2)
+ 
+                  /* --- Commands that require arguments:        --- */
+  plural = "NEWS MOVIE WEATHER FORECAST STOCK DICTIONARY THESAURUS "
+  plural = plural || "BOXES BANNER "
+ 
+                  /* --- Commands that do not require arguments: --- */
+  singular = "NEWTON INFO MOON STATS UNAME PI FORTUNE PS SYSOP "
+  singular = singular || "UPGRADE TORAH HELP"
+ 
+  Select
+ 
+    When Wordpos(uarg1, plural) > 0 Then
+      If uarg2 = ""
+        Then Say 'Please provide an argument for the 'uarg1' command.'
+        Else Call Send_Relay(uarg1" "uarg2)
+ 
+    When Wordpos(uarg1, singular) > 0 Then Call Send_Relay(uarg1)
+ 
+    Otherwise Call Help()
+ 
+  End
+ 
+Return
+ 
+ 
+Help:
+  Say "Relay command processor v1.6                    "
+  Say "                                                "
+  Say "Usage:                                          "
+  Say "  RELAY [service] [arguments]                   "
+  Say "                                                "
+  Say "RELAY services available:                       "
+  Say "    NEWS    TOP     PI          BANNER   UNAME  "
+  Say "    WEATHER|city    NEWS bbc|npr         BOXES  "
+  Say "    HELP    SYSOP   INFO         STATS   UPGRADE"
+  Say "    FORECAST|CITY   STOCK|SYMBOL MOON    MOVIE|moviename"
+  Say "    NEWTON|expression            DICTIONARY|WORD"
+  Say "    THESAURUS|word                              "
+Return
+ 
+ 
+Send_Relay:
+  Parse Arg msg
+  'CP SMSG RSCS CMD RELAY 'msg
+  Say
+  Say "Relay command processor v1.6"
+  Say "Relay command submitted. Please wait 5-7 seconds for response"
+  Say
+ 
+Return
+ 
