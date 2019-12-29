@@ -12,7 +12,7 @@ Main:
  
                   /* --- Commands that do not require arguments: --- */
   singular = "NEWTON INFO MOON STATS UNAME PI FORTUNE PS SYSOP "
-  singular = singular || "UPGRADE TORAH HELP"
+  singular = singular || "UPGRADE TORAH HELP TOP"
  
   Select
  
