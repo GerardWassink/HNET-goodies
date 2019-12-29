@@ -49,6 +49,9 @@ Return
 Send_Relay:
   Parse Arg msg
   'CP SMSG RSCS CMD RELAY 'msg
+/* This seems to work on some systems, where I needed the line above:
+ 'SMSG RSCS CMD RELAY 'msg
+ */
   Say
   Say "Relay command processor v1.6"
   Say "Relay command submitted. Please wait 5-7 seconds for response"
